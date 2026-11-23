@@ -1,0 +1,8 @@
+services:
+  web:
+    build: .
+    image: webassembling:latest
+    container_name: webassembling
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
