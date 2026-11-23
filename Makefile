@@ -1,21 +1,11 @@
-.PHONY: docker-build docker-run docker-stop up down
+.PHONY: build serve clean
 
-IMAGE = webassembling:latest
+build:
+	cp "$$(go env GOROOT)/lib/wasm/wasm_exec.js" web/
+	GOOS=js GOARCH=wasm go build -o web/main.wasm ./wasm
 
-# Build the Docker image (compiles Go -> WebAssembly inside Docker)
-docker-build:
-	docker build -t $(IMAGE) .
+serve: build
+	go run serve.go
 
-# Run the container on http://localhost:8080
-docker-run: docker-build
-	docker run -d --rm --name webassembling -p 8080:8080 $(IMAGE)
-
-docker-stop:
-	docker stop webassembling
-
-# Same with Docker Compose
-up:
-	docker compose up -d --build
-
-down:
-	docker compose down
+clean:
+	rm -f web/main.wasm web/wasm_exec.js
