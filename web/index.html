@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WebAssembly with Go – Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>WebAssembly with Go</h1>
+    <p>Functions written in Go, compiled to <code>main.wasm</code> and called from JavaScript.</p>
+    <p id="status" class="status loading">Loading WebAssembly module…</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>1. Add two numbers</h2>
+      <input id="a" type="number" value="7"> +
+      <input id="b" type="number" value="35">
+      <button id="btn-add" disabled>Calculate</button>
+      <p class="result" id="add-output"></p>
+    </section>
+
+    <section class="card">
+      <h2>2. Fibonacci</h2>
+      <input id="fib-n" type="number" value="50" min="0" max="90">
+      <button id="btn-fib" disabled>Calculate</button>
+      <p class="result" id="fib-output"></p>
+    </section>
+
+    <section class="card">
+      <h2>3. Reverse a string</h2>
+      <input id="text" type="text" value="WebAssembly 🚀">
+      <button id="btn-reverse" disabled>Reverse</button>
+      <p class="result" id="reverse-output"></p>
+    </section>
+
+    <section class="card">
+      <h2>4. Go writes to the DOM</h2>
+      <input id="name" type="text" placeholder="Your name">
+      <button id="btn-greet" disabled>Greet</button>
+      <p class="result" id="greet-output"></p>
+    </section>
+
+    <section class="card">
+      <h2>5. WebAssembly vs JavaScript</h2>
+      <p>Count the primes below a limit using the same algorithm in both languages.</p>
+      <input id="limit" type="number" value="5000000" step="1000000">
+      <button id="btn-bench" disabled>Run benchmark</button>
+      <p class="result" id="bench-output"></p>
+    </section>
+  </main>
+
+  <script src="wasm_exec.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
